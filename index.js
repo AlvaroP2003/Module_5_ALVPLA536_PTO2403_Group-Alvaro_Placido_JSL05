@@ -11,21 +11,54 @@ const songs = [
     { title: "Come and Get Your Love", artist: "Redbone", genre: "Rock" },
     { title: "I'm Not in Love", artist: "10cc", genre: "Pop" },
     { title: "Fooled Around and Fell in Love", artist: "Elvin Bishop", genre: "Rock" },
+    { title: "Brandy (You're a Fine Girl)", artist: "Looking Glass", genre: "Rock" },
+    { title: "Go All the Way", artist: "Raspberries", genre: "Rock" },
+    { title: "Mr. Blue Sky", artist: "Electric Light Orchestra", genre: "Rock" },
+    { title: "Wham Bam Shang-A-Lang", artist: "Silver", genre: "Pop" },
+    { title: "The Chain", artist: "Fleetwood Mac", genre: "Rock" }
     // Feel free to add even more songs
 ];
+
+
 
 
 // Object containing each Guardian's preferred genre
 const guardians = {
     "Star-Lord": "Rock",
     "Gamora": "Pop",
+    "Drax": "R&B",
+    "Rocket": "Rock",
+    "Groot": "Pop"
     // Add preferences for Drax, Rocket, and Groot
 };
 
+
+const playlists  = document.getElementById('playlists')
+
+function songGenre(x){
+    const ul = document.createElement('ul')
+    playlists.appendChild(ul)
+
+    songs.forEach(e => {
+        if(e.genre === guardians[x]) {
+            const li = document.createElement('li')
+            li.textContent = e.title
+            ul.appendChild(li)
+        }
+    })
+}
+
+songGenre('Drax')
+
+
+
+
+
 // Function to generate playlist based on preferred genre
-function generatePlaylist(guardians, songs) {
+function generatePlaylist(guardians, songs) {    
     // Use the map() function to create playlists for each Guardian
     // Your code here
+    
 }
 
 // Call generatePlaylist and display the playlists for each Guardian
