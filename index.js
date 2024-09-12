@@ -1,4 +1,3 @@
-// Array of song objects. Add at least 5 songs with title, artist, and genre properties.
 const songs = [
     { title: "Hooked on a Feeling", artist: "Blue Swede", genre: "Pop" },
     { title: "Moonage Daydream", artist: "David Bowie", genre: "Rock" },
@@ -16,52 +15,51 @@ const songs = [
     { title: "Mr. Blue Sky", artist: "Electric Light Orchestra", genre: "Rock" },
     { title: "Wham Bam Shang-A-Lang", artist: "Silver", genre: "Pop" },
     { title: "The Chain", artist: "Fleetwood Mac", genre: "Rock" }
-    // Feel free to add even more songs
 ];
 
 
-
-
-// Object containing each Guardian's preferred genre
 const guardians = {
     "Star-Lord": "Rock",
     "Gamora": "Pop",
     "Drax": "R&B",
     "Rocket": "Rock",
     "Groot": "Pop"
-    // Add preferences for Drax, Rocket, and Groot
 };
 
+function generatePlaylist(guardians, songs) {
+    const playlistsDiv = document.getElementById('playlists');
 
-const playlists  = document.getElementById('playlists')
+    Object.keys(guardians).forEach(guardian => {
+        const guardianDiv = document.createElement('div');
+        guardianDiv.classList.add('playlist');
+        
+        const guardianName = document.createElement('h2');
+        guardianName.textContent = `${guardian}'s Playlist`;
+        guardianName.style.color = '#FFD700';
+        guardianDiv.appendChild(guardianName);
+        
+        const preferredGenre = guardians[guardian];
+        const filteredSongs = songs.filter(song => song.genre === preferredGenre);
+        
+        const songList = document.createElement('ul');
 
-function songGenre(x){
-    const ul = document.createElement('ul')
-    playlists.appendChild(ul)
+        filteredSongs.forEach(song => {
+            const songItem = document.createElement('li');
+            songItem.classList.add('song');
 
-    songs.forEach(e => {
-        if(e.genre === guardians[x]) {
-            const li = document.createElement('li')
-            li.textContent = e.title
-            ul.appendChild(li)
-        }
-    })
+            const songTitle = document.createElement('span');
+            songTitle.classList.add('song-title');
+            songTitle.textContent = song.title;
+
+            songItem.appendChild(songTitle);
+            songItem.appendChild(document.createTextNode(` by ${song.artist}`));
+            songList.appendChild(songItem);
+        });
+
+        guardianDiv.appendChild(songList);
+
+        playlistsDiv.appendChild(guardianDiv);
+    });
 }
 
-songGenre('Drax')
-
-
-
-
-
-// Function to generate playlist based on preferred genre
-function generatePlaylist(guardians, songs) {    
-    // Use the map() function to create playlists for each Guardian
-    // Your code here
-    
-}
-
-// Call generatePlaylist and display the playlists for each Guardian
 generatePlaylist(guardians, songs);
-
-
